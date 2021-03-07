@@ -27,7 +27,7 @@ class memory {
         this.afficherJeu();
     }
 
-    // retourne le nombre de symboles liés au niveau de dificulté choisi
+    // retourne le nombre de symboles liés au niveau de difficulté choisi
     getNiveauDifficulte(niveau) {
         switch (niveau) {
             case 'facile':
@@ -36,7 +36,7 @@ class memory {
             case 'normal':
                 return 12;
                 break;
-            case 'dificile':
+            case 'difficile':
                 return 18;
                 break;
             default:
