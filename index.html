@@ -1,12 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jeu Memory O'clock - Nicolas RAMEL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/memory.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
-    
+    <div id="page">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Jeu de mémoire</h1>
+
+                    <p id="explication">La règle est simple, vous devez associer les fruits ensemblent. Pour cela vous cliquez sur une zone
+                        grise pour révéler un fruit.
+                        Puis vous cliquez sur une deuxième zone grise. Si les fruits sont identiques, félicitation vous avez
+                        fait une bonne association.
+                        Si ce n'est pas le cas, garder dans votre mémoire la position des fruits car il vous faudra en rechercher d'autres.<br>
+                        Vous avez 1 minute pour associer tous les fruits entre eux.<br>
+                        Dès que vous êtes prêt, cliquez sur "Commencer le jeu" avec le niveau de jeu que vous souhaitez.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row m-2" id="gagne">
+                <div class="col text-center">
+                    Bravo, vous avez gagné<br>
+                    <img src="/images/gagne.gif" alt="Vous avez gagné" />
+                </div>
+            </div>
+
+            <div class="row m-2" id="perdu">
+                <div class="col text-center">
+                    Dommage, ça sera pour la prochaine fois<br>
+                    <img src="/images/perdu.gif" alt="Vous avez gagné" />
+                </div>
+            </div>
+
+            <div class="row" id="btnLancmentJeu">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-secondary btnLancerJeu" data-niveau="facile">Commencer le jeu en mode facile</button><br>
+                    <button type="button" class="btn btn-secondary btnLancerJeu m-2" data-niveau="normal">Commencer le jeu en mode normal</button><br>
+                    <button type="button" class="btn btn-secondary btnLancerJeu" data-niveau="dificile">Commencer le jeu en mode dificile</button>
+                </div>
+            </div>
+
+            <div class="row m-2">
+                <div class="col">
+                    <div id="zoneJeu">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="zoneProgressBar">
+                <div class="col">
+                    Temps restant : <span id="tempsRestant"></span>
+                    <div class="progress">
+                        <div id="progressBarTimer" class="progress-bar" role="progressbar" style="width: 25%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="statistiques">
+                <div class="col">
+                    afficher ici les stats retournées par le serveur.
+                </div>
+            </div>
+
+        </div>
+    </div>
 </body>
+
 </html>

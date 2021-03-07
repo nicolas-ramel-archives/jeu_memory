@@ -1,0 +1,52 @@
+img {
+  max-width: 100%;
+}
+
+#zoneJeu .carte {
+  background-color: #ccc;
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  margin: 0 0 5px 5px;
+  cursor: pointer;
+  border: solid 1px #ccc;
+  -webkit-transition: background-color 3s ease-in-out;
+  transition: background-color 3s ease-in-out;
+}
+
+#zoneJeu .carte:active {
+  cursor: not-allowed;
+}
+
+.afficheSymbole {
+  background-image: url(/images/cards.png);
+}
+
+#perdu, #gagne {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+#page {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  #page {
+    width: 700px;
+  }
+}
+
+@media (max-width: 450px) {
+  #page {
+    width: 400px;
+  }
+}
+
+@media (max-width: 300px) {
+  #page {
+    width: 250px;
+  }
+}
+/*# sourceMappingURL=style.css.map */
