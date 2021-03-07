@@ -4,8 +4,8 @@ class memory {
     jeuTermine = false;
 
     // constructeur de la class permettant d'initiliser les valeurs et construire l'interface de jeu
-    constructor(niveauDificulte, dureeJeu, zoneJeu, idProgressBarTimer, afficherJeu, afficheGagne, affichePerdu) {
-        this.nbSymboles = this.getNiveauDificulte(niveauDificulte);
+    constructor(niveauDifficulte, dureeJeu, zoneJeu, idProgressBarTimer, afficherJeu, afficheGagne, affichePerdu) {
+        this.nbSymboles = this.getNiveauDifficulte(niveauDifficulte);
         this.idProgressBarTimer = idProgressBarTimer;
         this.zoneJeu = zoneJeu;
         this.dureeJeu = dureeJeu;
@@ -28,7 +28,7 @@ class memory {
     }
 
     // retourne le nombre de symboles liés au niveau de dificulté choisi
-    getNiveauDificulte(niveau) {
+    getNiveauDifficulte(niveau) {
         switch (niveau) {
             case 'facile':
                 return 6;
