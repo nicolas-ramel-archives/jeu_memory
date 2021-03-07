@@ -16,7 +16,6 @@ img {
     margin: 0 0 $espaceCarte $espaceCarte;
     cursor: pointer;
     border: solid 1px $bordureCarte;
-    transition: background-color 3s ease-in-out;
 }
 
 #zoneJeu .carte:active {
@@ -54,4 +53,3 @@ img {
         width: 250px;
     }
 }
-
