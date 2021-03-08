@@ -15,11 +15,6 @@ if (isset($_POST["action"]) && $_POST["action"] == "send") {
     $entityManager->flush();
 }
 
-
-
-// on retourne quelques stats
-$dataReturn = [];
-
 // recherche le meilleur score par niveau  et la moyenne
 $dql = "SELECT min(r.temps) as meilleurScore, avg(r.temps) as moyenne, r.niveau FROM App\Resultat r WHERE r.gagne = true GROUP BY r.niveau";
 $query = $entityManager->createQuery($dql);
