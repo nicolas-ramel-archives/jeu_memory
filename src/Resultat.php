@@ -29,6 +29,12 @@ class Resultat
     protected $temps;
 
 
+    /**
+     * @ORM\Column(name="niveau", type="string", nullable=true)
+     */
+    protected $niveau;
+
+
 
     /**
      * @ORM\Column(name="date_add", type="datetime", nullable=true)
@@ -59,6 +65,16 @@ class Resultat
     public function setTemps($temps)
     {
         $this->temps = $temps;
+    }
+
+    public function getNiveau()
+    {
+        return $this->niveau;
+    }
+
+    public function setNiveau($niveau)
+    {
+        $this->niveau = $niveau;
     }
 
     public function getDateAdd()

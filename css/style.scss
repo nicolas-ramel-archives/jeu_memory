@@ -1,7 +1,8 @@
 $largeurCarte: 100px;
 $hauteurCarte: 100px;
 $espaceCarte: 5px;
-$bordureCarte : #ccc;
+$bordureCarte: #ccc;
+$bgStatisque: rgb(202, 202, 189);
 
 
 img {
@@ -34,6 +35,13 @@ img {
 #page {
     margin-left: auto;
     margin-right: auto;
+}
+
+#statistiques {
+    background-color: $bgStatisque;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 @media (min-width: 768px) {

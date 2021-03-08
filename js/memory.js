@@ -4,7 +4,8 @@ class memory {
     jeuTermine = false;
 
     // constructeur de la class permettant d'initiliser les valeurs et construire l'interface de jeu
-    constructor(niveauDifficulte, dureeJeu, zoneJeu, idProgressBarTimer, afficherJeu, afficheGagne, affichePerdu) {
+    constructor(niveauDifficulte, dureeJeu, zoneJeu, idProgressBarTimer, afficherJeu, afficheGagne, affichePerdu, affichageStatistique) {
+        this.niveauDifficulte = niveauDifficulte ;
         this.nbSymboles = this.getNiveauDifficulte(niveauDifficulte);
         this.idProgressBarTimer = idProgressBarTimer;
         this.zoneJeu = zoneJeu;
@@ -12,6 +13,8 @@ class memory {
         this.afficheGagne = afficheGagne;
         this.affichePerdu = affichePerdu;
         this.afficherJeu = afficherJeu;
+        this.affichageStatistique = affichageStatistique;
+        this.tempsEcoule = 0 ;
 
         // définit la position des cartes
         this.definitPositionCarte();
@@ -148,6 +151,17 @@ class memory {
         if (!this.jeuTermine) {
             this.jeuTermine = true;
             gagne ? this.afficheGagne() : this.affichePerdu();
+
+            let dataPost = {};
+            dataPost.action = "send" ;
+            dataPost.resultat = gagne ? "gagne" : "perdu" ;
+            dataPost.duree = this.tempsEcoule ;
+            dataPost.niveau = this.niveauDifficulte ;
+
+            let callbackStat = this.affichageStatistique;
+            $.post( "/resultats.php", dataPost, function( reponse ) {
+                callbackStat(reponse);
+            });
         }
     }
 
@@ -156,6 +170,7 @@ class memory {
         if (this.jeuTermine == false) {
             let heureActuelle = new Date();
             let dureeExecution = (heureActuelle - this.dateLancement) / 1000;
+            this.tempsEcoule = parseInt(dureeExecution) ;
 
             // si le temps n'a pas expiré
             if (dureeExecution < this.dureeJeu) {
@@ -182,6 +197,28 @@ class memory {
 
 $(document).ready(function () {
     let jeu;
+
+    let affichageStatistique = function (reponse) {
+        reponse = JSON.parse(reponse);
+
+        if (reponse.length == 0) {
+            $("#statistiques .col").html('Aucune statistique pour le moment') ;
+        } else {
+            $("#statistiques .col").html('<ul></ul>') ;
+            $.each(reponse, function (index, data) {
+                let ligneStat = "<li>Niveau : " + data.niveau ;
+                ligneStat += " (Meilleur score : " + data.meilleurScore + "s., " ;
+                ligneStat += " en moyenne " + parseInt(data.moyenne) + "s.)</li>" ;
+                $("#statistiques .col ul").append(ligneStat);
+            });
+        }
+
+        $("#statistiques").show();
+    };
+
+    $.get( "/resultats.php", function( reponse ) {
+        affichageStatistique(reponse);
+    });
 
     // masque les éléments quand le jeu n'est pas lancé
     let masquerJeu = function () {
@@ -220,7 +257,7 @@ $(document).ready(function () {
         let niveau = $(this).data("niveau");
 
         // initialise le jeu
-        jeu = new memory(niveau, 60, "zoneJeu", "progressBarTimer", afficherJeu, afficheGagne, affichePerdu);
+        jeu = new memory(niveau, 60, "zoneJeu", "progressBarTimer", afficherJeu, afficheGagne, affichePerdu, affichageStatistique);
 
         // supprime l'évenement sur le click des cartes (pour les lancements de jeu multiple)
         $("#zoneJeu .carte").unbind("click");
