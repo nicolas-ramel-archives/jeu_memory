@@ -15,9 +15,9 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $i
 // database configuration parameters
 $connectionParams = array(
     'dbname' => 'memory',
-    'user' => 'root',
-    'password' => 'root',
-    'host' => '127.0.0.1',
+    'user' => 'user',
+    'password' => 'test',
+    'host' => 'db',
     'driver' => 'pdo_mysql',
 );
 $conn = \Doctrine\DBAL\DriverManager::getConnection($connectionParams);
